@@ -34,8 +34,8 @@ jobs:
         run: mv archive.zip archive.dslibrary
 
 
-        - name: Upload Archive
-      uses: actions/upload-artifact@v2
-      with:
-        name: Modified-Archive
-        path: archive.dslibrary
+      - name: Upload Archive
+        uses: actions/upload-artifact@v2
+        with:
+          name: Modified-Archive
+          path: archive.dslibrary
