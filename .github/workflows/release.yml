@@ -1,0 +1,35 @@
+name: Release Library
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install dependencies (if needed)
+        # Add commands to install tools like zip if not pre-installed
+        run: |
+          sudo apt update -y && sudo apt install zip -y
+
+      - name: Zip main repository
+        run: zip -r ${{ github.sha }}.zip .
+
+      - name: Rename zip to library
+        run: mv ${{ github.sha }}.zip ${{ github.sha }}.library
+
+      - name: Upload library as release asset
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-library
+          path: ${{ github.sha }}.library
+
+      - name: Create release (optional)
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.sha }}
+          body: ${{ github.sha }} release
+          assets: ${{ github.workspace }}/release-library/*.library
