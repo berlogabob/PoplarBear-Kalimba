@@ -1,35 +1,39 @@
-name: Release Library
+name: Release Asset Creation
 
 on:
-  push:
-    branches: [ main ]
+  release:
+    types: [ created ]
 
 jobs:
-  build:
+  create-release-asset:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
 
-      - name: Install dependencies (if needed)
-        # Add commands to install tools like zip if not pre-installed
+      - name: Install dependencies
         run: |
-          sudo apt update -y && sudo apt install zip -y
+          sudo apt-get update && sudo apt-get install -y zip
 
-      - name: Zip main repository
-        run: zip -r ${{ github.sha }}.zip .
+      - name: Create archive
+        run: |
+          zip -r main.zip ./main/*
 
-      - name: Rename zip to library
-        run: mv ${{ github.sha }}.zip ${{ github.sha }}.library
+      - name: Rename archive to .dslibrary
+        run: mv main.zip main.dslibrary
 
-      - name: Upload library as release asset
+      - name: Upload release asset
         uses: actions/upload-artifact@v3
         with:
-          name: release-library
-          path: ${{ github.sha }}.library
+          name: release-asset
+          path: main.dslibrary
 
       - name: Create release (optional)
         uses: actions/create-release@v1
+        if: ${{ github.event.name == 'release' && github.event.release.draft == false }}
         with:
-          tag_name: ${{ github.sha }}
-          body: ${{ github.sha }} release
-          assets: ${{ github.workspace }}/release-library/*.library
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}  # Customize release name if desired
+          body: ${{ github.event.release.body }}  # Optional release description
+          draft: false
+          prerelease: false  # Set to true for prereleases
+
