@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Archive repository content
-        run: zip -r archive.zip
+        run: zip -r archive.zip .
 
       # Runs a set of commands using the runners shell
       - name: Rename archive file extension
