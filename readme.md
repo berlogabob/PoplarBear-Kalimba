@@ -1,5 +1,5 @@
 
-# a Kalimba library for Decent sampler by PoplarBear
+# a [Kalimba](https://poplarbear.gumroad.com/l/PoplarBear-Kalimba-CE) library for Decent sampler by PoplarBear
 
 
 > [!TIP]
@@ -9,3 +9,5 @@
 - [ ]  create package for realese as a .dslibrary
 
 
+## links
+[poplarbear.github.io](https://berlogabob.github.io/poplarbear.github.io/)
