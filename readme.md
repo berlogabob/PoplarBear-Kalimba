@@ -1,6 +1,6 @@
 
 # a [Kalimba](https://poplarbear.gumroad.com/l/PoplarBear-Kalimba-CE) library for Decent sampler by PoplarBear
- a full library can be downloaded on [gumroad](https://poplarbear.gumroad.com/l/PoplarBear-Kalimba-CE)
+ a package **.dslibrary** library can be downloaded on [gumroad](https://poplarbear.gumroad.com/l/PoplarBear-Kalimba-CE)
 
 > [!TIP]
 > [Link to Decent Sampler](https://www.decentsamples.com/product/decent-sampler-plugin) to open library.
